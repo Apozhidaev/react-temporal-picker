@@ -24,7 +24,7 @@ export type RangePickerProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   "type" | "readOnly" | "value" | "onSelect"
 > & {
-  options: RangePickerOptions;
+  options?: RangePickerOptions;
   startDate?: string;
   endDate?: string;
   value?: string;
@@ -78,7 +78,7 @@ const RangePicker = forwardRef(function RangePickerWrapper(
       ...options,
       element,
       rangeOptions: {
-        ...options.rangeOptions,
+        ...options?.rangeOptions,
         startDate,
         endDate,
       },

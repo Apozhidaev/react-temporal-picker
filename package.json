@@ -1,6 +1,6 @@
 {
   "name": "react-temporal-picker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "module": "dist/module.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "react-use-event-hook": "^0.9.3",
-    "temporal-picker": "^0.0.6"
+    "temporal-picker": "^0.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

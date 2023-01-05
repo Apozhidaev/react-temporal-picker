@@ -188,10 +188,10 @@ react@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
 
-temporal-picker@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/temporal-picker/-/temporal-picker-0.0.6.tgz#b46c267bf3dfd09428760e7b495e5647ba4d6813"
-  integrity sha512-y1iB2NnDFUd+Sk87V8kTlK39lsH+CjC40nrOSNOp8Af53Qz2+ZDOBsvu3DS0AqEMPOI0Ar9W/XjJevbVgMRyuw==
+temporal-picker@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/temporal-picker/-/temporal-picker-0.0.7.tgz#78b98a2a42c7c4ee5cff78473c930bc7a7783f55"
+  integrity sha512-ytHLe6MRiWBLbP52nNhzIESp+udeT9aMEK7je+aaYAZbjfogUniMa61mbPTHEv4tUjnGy8FIK8JXv+U4pur+lQ==
 
 typescript@^4.9.4:
   version "4.9.4"

@@ -12,12 +12,12 @@
     "src"
   ],
   "keywords": [
-    "temporal-picker",
+    "temporal",
+    "picker",
     "datepicker",
     "rangepicker",
     "date",
     "daterange",
-    "picker",
     "range"
   ],
   "scripts": {

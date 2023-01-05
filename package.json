@@ -1,7 +1,9 @@
 {
   "name": "react-temporal-picker",
-  "version": "0.0.1",
-  "main": "index.js",
+  "version": "0.0.2",
+  "main": "dist/index.js",
+  "module": "dist/module.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:Apozhidaev/react-temporal-picker.git",
   "author": "alexanderpo <alexander.pozhidaev@gmail.com>",
   "license": "MIT",

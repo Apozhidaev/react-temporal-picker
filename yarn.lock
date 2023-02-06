@@ -203,10 +203,10 @@ react@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
 
-temporal-picker@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/temporal-picker/-/temporal-picker-1.0.1.tgz#230c1d192426a9976b5c5182363d3a8be314d991"
-  integrity sha512-/GtZBO7YFb5f1/Xw12cxJPN4VGp6yhlIno1iqcOiPV5p69YD6di3jeRRUynT2HqX5swLuwpHRD1luh6YWf+Q4A==
+temporal-picker@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/temporal-picker/-/temporal-picker-1.0.2.tgz#f644700f9379c81071548a94e1f7d25af71590ca"
+  integrity sha512-W+JP3Fl8vay35QSB3kkDCxzWaiALB7fWEDJLWqYNFzqFRA32m+zegxpNSrWmbkX5Q360aOugBFMTzsJPnsrDWg==
   dependencies:
     "@popperjs/core" "^2.11.6"
     lodash.merge "^4.6.2"

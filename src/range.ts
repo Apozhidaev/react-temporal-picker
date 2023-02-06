@@ -11,7 +11,6 @@ import useEvent from "react-use-event-hook";
 import {
   RangePicker as PlainPicker,
   RangePickerOptions as PlainPickerOptions,
-  RangePlugin,
 } from "temporal-picker";
 
 export type RangePickerInputElement = HTMLInputElement & {
@@ -51,8 +50,8 @@ const RangePicker = forwardRef(function RangePickerWrapper(
   const { value } = props;
 
   const handleSelect = useEvent((event) => {
-    const { startDateISO, endDateISO } = event.detail;
-    onSelect?.(startDateISO, endDateISO);
+    const { start, end } = event.detail;
+    onSelect?.(start, end);
   });
   const handleClear = useEvent(() => {
     onClear?.();
@@ -77,11 +76,8 @@ const RangePicker = forwardRef(function RangePickerWrapper(
     element.pickerInstance = new PlainPicker({
       ...options,
       element,
-      rangeOptions: {
-        ...options?.rangeOptions,
-        startDate,
-        endDate,
-      },
+      startDate,
+      endDate,
       setup: (picker) => {
         handleSetup(picker);
         picker.on("select", handleSelect);
@@ -92,66 +88,20 @@ const RangePicker = forwardRef(function RangePickerWrapper(
 
   // update startDate and endDate values
   useEffect(() => {
-    if (value !== undefined) {
-      return;
-    }
     const element = inputRef.current;
     if (!element || !element.pickerInstance) {
       return;
     }
     const picker = element.pickerInstance;
 
-    if (!startDate) {
-      if (picker.getStartDate()) {
-        picker.clear();
-      }
-      return;
-    }
-
-    const rangePlugin =
-      picker.PluginManager.getInstance<RangePlugin>("RangePlugin");
-
-    if (rangePlugin.options.strict) {
+    if (options?.strict) {
       if (startDate && endDate) {
-        picker.setISODateRange(startDate, endDate);
+        picker.setDateRange(startDate, endDate);
       }
     } else {
-      if (startDate) picker.setISOStartDate(startDate);
-      if (endDate) picker.setISOEndDate(endDate);
+      picker.setDateRange(startDate || '', endDate || '');
     }
   }, [startDate, endDate]);
-
-  // update value
-  useEffect(() => {
-    if (value === undefined) {
-      return;
-    }
-    const element = inputRef.current;
-    if (!element || !element.pickerInstance) {
-      return;
-    }
-    const picker = element.pickerInstance;
-
-    if (!value) {
-      if (picker.getStartDate() || picker.getEndDate()) {
-        picker.clear();
-      }
-      return;
-    }
-
-    const rangePlugin =
-      picker.PluginManager.getInstance<RangePlugin>("RangePlugin");
-    const [start, end] = value.split(rangePlugin.options.delimiter!);
-
-    if (rangePlugin.options.strict) {
-      if (start && end) {
-        picker.setDateRange(start, end);
-      }
-    } else {
-      if (start) picker.setStartDate(start);
-      if (end) picker.setEndDate(end);
-    }
-  }, [value]);
 
   return createElement("input", {
     ...inputProps,

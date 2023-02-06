@@ -44,7 +44,7 @@ const DatePicker = forwardRef(function DatePickerWrapper(
   const { value } = props;
 
   const handleSelect = useEvent((event) => {
-    onSelect?.(event.detail.dateISO);
+    onSelect?.(event.detail.date);
   });
   const handleClear = useEvent(() => {
     onClear?.();
@@ -80,9 +80,6 @@ const DatePicker = forwardRef(function DatePickerWrapper(
 
   // update date value
   useEffect(() => {
-    if (value !== undefined) {
-      return;
-    }
     const element = inputRef.current;
     if (!element || !element.pickerInstance) {
       return;
@@ -97,30 +94,8 @@ const DatePicker = forwardRef(function DatePickerWrapper(
       return;
     }
 
-    picker.setISODate(date);
+    picker.setDate(date);
   }, [date]);
-
-  // update value
-  useEffect(() => {
-    if (value === undefined) {
-      return;
-    }
-    const element = inputRef.current;
-    if (!element || !element.pickerInstance) {
-      return;
-    }
-
-    const picker = element.pickerInstance;
-
-    if (!value) {
-      if (picker.getDate()) {
-        picker.clear();
-      }
-      return;
-    }
-
-    picker.setDate(value);
-  }, [value]);
 
   return createElement("input", {
     ...inputProps,

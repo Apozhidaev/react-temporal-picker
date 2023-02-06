@@ -29,7 +29,7 @@ function App() {
                 console.log(start, end);
               }}
               options={{
-                position: "right",
+                placement: "bottom-end",
                 presetOptions: {
                   presets: [
                     {

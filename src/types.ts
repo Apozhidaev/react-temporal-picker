@@ -1,17 +1,10 @@
-/// <reference types="temporal-picker/dist/types" />
+import { Components } from "temporal-picker/dist/types";
+import { HTMLAttributes } from "react";
 
-export type PickerProps = {
-  picker?: "date" | "time" | "datetime" | "month";
-  disabled?: boolean;
-  readonly?: boolean;
-  max?: string;
-  min?: string;
-  native?: boolean;
-  placement?: "bottom-start" | "bottom-end";
-  autoApply?: boolean;
-  resetButton?: boolean;
-  monthSelect?: boolean;
-  yearSelect?: boolean;
-  className?: string;
-  testId?: string;
-};
+export type TemporalPickerElement = Partial<Components.TemporalPicker>;
+export type HTMLTemporalPickerElement = TemporalPickerElement & HTMLElement;
+
+export type TemporalPickerProps = TemporalPickerElement &
+  HTMLAttributes<HTMLElement> & {
+    testId?: string;
+  };

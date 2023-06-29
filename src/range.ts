@@ -7,43 +7,41 @@ import {
   createElement,
 } from "react";
 import useEvent from "react-use-event-hook";
-import { PickerProps } from "./types";
+import { TemporalPickerProps } from "./types";
 
-export type PresetItem = {
+export type Preset = {
   label: string;
   start?: string;
   end?: string;
 };
 
-export type RangePickerProps = PickerProps & {
-  start?: string;
-  end?: string;
-  onChange?: (start?: string, end?: string) => void;
-  presets?: PresetItem[];
+export type RangePickerProps = Omit<TemporalPickerProps, "type" | "value"> & {
+  presets?: Preset[];
+  onRangeChange?: (start?: string, end?: string) => void;
 };
 
 export const RangePicker = memo(
-  forwardRef(function RangePickerWrapper(
+  forwardRef(function TemporalPicker(
     props: RangePickerProps,
     ref: React.ForwardedRef<HTMLTemporalPickerElement>
   ) {
     const inputRef = useRef<HTMLTemporalPickerElement>(null);
     useImperativeHandle(ref, () => inputRef.current!);
+
     const {
-      picker,
       presets,
-      onChange,
       autoApply,
       monthSelect,
       resetButton,
       yearSelect,
       testId,
-      ...inputProps
+      onRangeChange,
+      ...pickerProps
     } = props;
 
     const handleRangeChange = useEvent((event) => {
       const { start, end } = event.detail;
-      onChange?.(start, end);
+      onRangeChange?.(start, end);
     });
 
     useEffect(() => {
@@ -51,7 +49,6 @@ export const RangePicker = memo(
       if (!element) {
         return;
       }
-
       element.addEventListener("rangeChange", handleRangeChange);
       return () => {
         element.removeEventListener("rangeChange", handleRangeChange);
@@ -61,14 +58,13 @@ export const RangePicker = memo(
     return createElement(
       "temporal-picker",
       {
-        ...inputProps,
+        ...pickerProps,
         "auto-apply": autoApply,
         "reset-button": resetButton,
         "month-select": monthSelect,
         "year-select": yearSelect,
         "data-testid": testId,
         type: "range",
-        plain: picker,
         ref: inputRef,
       },
       ...(presets || []).map((preset) =>

@@ -1,9 +1,10 @@
 import { defineCustomElements } from "temporal-picker";
-import { PlainPicker } from "./plain";
+import { DatePicker } from "./date";
 
 defineCustomElements();
 
-export * from "./plain";
-export * from "./range";
+export * from './types';
+export * from './date';
+export * from './range';
 
-export default PlainPicker;
+export default DatePicker;

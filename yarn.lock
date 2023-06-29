@@ -208,10 +208,10 @@ react@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
 
-temporal-picker@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/temporal-picker/-/temporal-picker-2.0.2.tgz#339142f8c5d31f1bd7907baec0da01ec8c238199"
-  integrity sha512-es/Wa/7RDJE5v6JEcqundDv0Qy8EElVWAXGgA6z+OWzA3yqsbH+TpTYMI2kPnvTPCNAJSFsro834CNUvP3YLrg==
+temporal-picker@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/temporal-picker/-/temporal-picker-2.0.4.tgz#1039e63ddd3b578463e688b5eec01ddd762dcbf5"
+  integrity sha512-90lacVFeqcgbNv4/hWeAbO5QinE99ufptKYjmpNAnbwQ2DxuRR1Cf6gxpe9gGgMmxqMYMegsiFD14juLSOgIGg==
   dependencies:
     "@popperjs/core" "^2.11.8"
     "@stencil/core" "^3.0.0"

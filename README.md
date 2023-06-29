@@ -11,48 +11,33 @@ npm i react-temporal-picker
 
 Step 2.
 ```jsx
-import { DatePicker, RangePicker } from "react-temporal-picker";
+import { PlainPicker, RangePicker } from "react-temporal-picker";
 
 function Demo() {
   return (
     <>
-       <DatePicker
-          onSelect={(date) => {
+       <PlainPicker
+          value="2022-01-01"
+          onChange={(date) => {
             console.log(date);
           }}
-          onClear={() => {
-            console.log("clear");
+        />
+       <RangePicker
+          start="2022-01-01"
+          end="2022-01-16"
+          onChange={(start, end) => {
+            console.log(start, end);
           }}
-          options={{
-            extraOptions: {
-              resetButton: true,
-            },
-          }}
+          placement="bottom-end"
+          autoApply
+          resetButton
+          monthSelect
+          yearSelect
+          presets={[
+            { label: "Preset 1", start: "2023-01-01", end: "2023-02-15" },
+            { label: "Preset 2", start: "2023-01-01" },
+          ]}
        />
-      <RangePicker
-        startDate="2022-01-01"
-        endDate="2022-01-16"
-        onSelect={(start, end) => {
-          console.log(start, end);
-        }}
-        options={{
-          position: "right",
-          presetOptions: {
-            presets: [
-              {
-                label: "Last Week",
-                start: "2022-01-01",
-                end: "2023-01-01",
-              },
-              {
-                label: "Last Month",
-                start: "2021-01-01",
-                end: "2023-01-01",
-              },
-            ],
-          },
-        }}
-      />
     </>
   );
 }
@@ -64,73 +49,105 @@ export default Demo;
 ### Props
 
 ```typescript
-type DatePickerProps = {
-  date?: string;
-  value?: string;
-  onSetup?: (picker: PlainPicker) => void;
-  onSelect?: (date: string) => void;
-  onClear?: () => void;
-  options?: DatePickerOptions;
+export type PickerProps = {
+  picker?: "date" | "time" | "datetime" | "month";
+  disabled?: boolean;
+  readonly?: boolean;
+  max?: string;
+  min?: string;
+  native?: boolean;
+  placement?: "bottom-start" | "bottom-end";
+  autoApply?: boolean;
+  resetButton?: boolean;
+  monthSelect?: boolean;
+  yearSelect?: boolean;
+  className?: string;
+  testId?: string;
 };
 
-type RangePickerProps = {
-  startDate?: string;
-  endDate?: string;
+export type PlainPickerProps = PickerProps & {
   value?: string;
-  onSetup?: (picker: PlainPicker) => void;
-  onSelect?: (start: string, end: string) => void;
-  onClear?: () => void;
-  options: RangePickerOptions;
+  onChange?: (value?: string) => void;
+};
+
+export type RangePickerProps = PickerProps & {
+  start?: string;
+  end?: string;
+  onChange?: (start?: string, end?: string) => void;
+  presets?: {
+    label: string;
+    start?: string;
+    end?: string;
+  }[];
 };
 ```
 
 ## Customize
 ```css
 :root {
-  --temporal-picker-color-bg-default: #fff;
-  --temporal-picker-color-bg-secondary: #f2f5f8;
-  --temporal-picker-color-fg-default: #1e293b;
-  --temporal-picker-color-fg-primary: #2e6fda;
-  --temporal-picker-color-fg-secondary: #64748b;
-  --temporal-picker-color-fg-selected: #fff;
-  --temporal-picker-color-fg-muted: #64748b;
-  --temporal-picker-color-fg-accent: #e63757;
-  --temporal-picker-color-btn-primary-bg: #2e6fda;
-  --temporal-picker-color-btn-primary-fg: #fff;
-  --temporal-picker-color-btn-primary-border: #2e6fda;
-  --temporal-picker-color-btn-primary-hover-bg: #2c67cd;
-  --temporal-picker-color-btn-primary-hover-fg: #fff;
-  --temporal-picker-color-btn-primary-hover-border: #2c67cd;
-  --temporal-picker-color-btn-primary-disabled-bg: #80aff8;
-  --temporal-picker-color-btn-primary-disabled-fg: #fff;
-  --temporal-picker-color-btn-primary-disabled-border: #80aff8;
-  --temporal-picker-color-btn-secondary-bg: #fff;
-  --temporal-picker-color-btn-secondary-fg: #475569;
-  --temporal-picker-color-btn-secondary-border: #cbd5e1;
-  --temporal-picker-color-btn-secondary-hover-bg: #f8fafc;
-  --temporal-picker-color-btn-secondary-hover-fg: #475569;
-  --temporal-picker-color-btn-secondary-hover-border: #cbd5e1;
-  --temporal-picker-color-btn-secondary-disabled-bg: #cbd5e1;
-  --temporal-picker-color-btn-secondary-disabled-fg: #fff;
-  --temporal-picker-color-btn-secondary-disabled-border: #cbd5e1;
-  --temporal-picker-color-border-default: #cbd5e1;
-  --temporal-picker-color-border-locked: #f9f9f9;
-  --temporal-picker-day-width: 43px;
-  --temporal-picker-day-height: 37px;
-  --temporal-picker-z-index: 40;
-  --temporal-picker-border-radius: 2px;
-  --temporal-picker-primary-color: #2e6fda;
-  --temporal-picker-secondary-color: #64748b;
-  --temporal-picker-font-family: inherit;
-  --temporal-picker-box-shadow: 0 4px 28px 0 rgb(0 0 0 / 12%);
-  --temporal-picker-month-name-font-weight: 700;
-  --temporal-picker-focus-color: #94a3b8;
-  --temporal-picker-select-outline-color: #e5e7eb;
-  --temporal-picker-color-fg-locked: #9e9e9e;
-  --temporal-picker-color-bg-locked: #ffab91;
-  --temporal-picker-color-bg-unavailable: #f9f9f9;
-  --temporal-picker-color-bg-inrange: #e6effe;
-  --temporal-picker-color-bg-tooltip: #fff;
-  --temporal-picker-color-fg-tooltip: #1e293b;
+  --tp-popup-color-bg-default: #fff;
+  --tp-popup-color-bg-secondary: #f2f5f8;
+  --tp-popup-color-fg-default: #1e293b;
+  --tp-popup-color-fg-primary: #2e6fda;
+  --tp-popup-color-fg-secondary: #64748b;
+  --tp-popup-color-fg-selected: #fff;
+  --tp-popup-color-fg-muted: #64748b;
+  --tp-popup-color-fg-accent: #e63757;
+  --tp-popup-color-btn-primary-bg: #2e6fda;
+  --tp-popup-color-btn-primary-fg: #fff;
+  --tp-popup-color-btn-primary-border: #2e6fda;
+  --tp-popup-color-btn-primary-hover-bg: #2c67cd;
+  --tp-popup-color-btn-primary-hover-fg: #fff;
+  --tp-popup-color-btn-primary-hover-border: #2c67cd;
+  --tp-popup-color-btn-primary-disabled-bg: #80aff8;
+  --tp-popup-color-btn-primary-disabled-fg: #fff;
+  --tp-popup-color-btn-primary-disabled-border: #80aff8;
+  --tp-popup-color-btn-secondary-bg: #fff;
+  --tp-popup-color-btn-secondary-fg: #475569;
+  --tp-popup-color-btn-secondary-border: #cbd5e1;
+  --tp-popup-color-btn-secondary-hover-bg: #f8fafc;
+  --tp-popup-color-btn-secondary-hover-fg: #475569;
+  --tp-popup-color-btn-secondary-hover-border: #cbd5e1;
+  --tp-popup-color-btn-secondary-disabled-bg: #cbd5e1;
+  --tp-popup-color-btn-secondary-disabled-fg: #fff;
+  --tp-popup-color-btn-secondary-disabled-border: #cbd5e1;
+  --tp-popup-color-border-default: #cbd5e1;
+  --tp-popup-color-border-locked: #f9f9f9;
+  --tp-popup-day-width: 43px;
+  --tp-popup-day-height: 37px;
+  --tp-popup-z-index: 40;
+  --tp-popup-border-radius: 2px;
+  --tp-popup-primary-color: #2e6fda;
+  --tp-popup-secondary-color: #64748b;
+  --tp-popup-font-family: inherit;
+  --tp-popup-box-shadow: 0 4px 28px 0 rgb(0 0 0 / 12%);
+  --tp-popup-month-name-font-weight: 700;
+  --tp-popup-focus-color: #94a3b8;
+  --tp-popup-select-outline-color: #e5e7eb;
+  --tp-popup-color-fg-locked: #9e9e9e;
+  --tp-popup-color-bg-locked: #ffab91;
+  --tp-popup-color-bg-unavailable: #f9f9f9;
+  --tp-popup-color-bg-inrange: #e6effe;
+  --tp-popup-color-bg-tooltip: #fff;
+  --tp-popup-color-fg-tooltip: #1e293b;
+
+  --tp-input-bg-color: #ffffff;
+  --tp-input-color: #111827;
+  --tp-input-disabled-bg-color: #f5f5f5;
+  --tp-input-disabled-color: #57534e;
+  --tp-input-border-radius: 0.375rem;
+  --tp-input-font-size: 1rem;
+  --tp-input-height: 2.25rem;
+  --tp-input-padding: 0.375rem 0.75rem;
+
+  --tp-input-focus-shadow:
+    rgb(255, 255, 255) 0 0 0 0 inset,
+    #3b82f6 0 0 0 2px inset,
+    rgba(0, 0, 0, 0.05) 0 1px 2px 0;
+
+  --tp-input-border-shadow:
+    rgb(255, 255, 255) 0 0 0 0 inset,
+    #d1d5db 0 0 0 1px inset,
+    rgba(0, 0, 0, 0.05) 0 1px 2px 0;
 }
 ```

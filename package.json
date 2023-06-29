@@ -1,6 +1,6 @@
 {
   "name": "react-temporal-picker",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "main": "dist/index.js",
   "module": "dist/module.js",
   "types": "dist/index.d.ts",
@@ -8,8 +8,7 @@
   "author": "alexanderpo <alexander.pozhidaev@gmail.com>",
   "license": "MIT",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "keywords": [
     "temporal",
@@ -32,7 +31,7 @@
   },
   "dependencies": {
     "react-use-event-hook": "^0.9.3",
-    "temporal-picker": "^1.0.2"
+    "temporal-picker": "^2.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

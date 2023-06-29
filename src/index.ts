@@ -1,21 +1,9 @@
-import DatePicker, {
-  DatePickerProps,
-  DatePickerOptions,
-  DatePickerInputElement,
-} from "./date";
-import RangePicker, {
-  RangePickerProps,
-  RangePickerOptions,
-  RangePickerInputElement,
-} from "./range";
+import { defineCustomElements } from "temporal-picker";
+import { PlainPicker } from "./plain";
 
-export type {
-  DatePickerProps,
-  DatePickerOptions,
-  DatePickerInputElement,
-  RangePickerProps,
-  RangePickerOptions,
-  RangePickerInputElement,
-};
-export { DatePicker, RangePicker };
-export default DatePicker;
+defineCustomElements();
+
+export * from "./plain";
+export * from "./range";
+
+export default PlainPicker;

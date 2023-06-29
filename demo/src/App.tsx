@@ -1,5 +1,4 @@
-import DatePicker from "../../src/index";
-import RangePicker from "../../src/range";
+import { PlainPicker, RangePicker } from "../../src/index";
 
 function App() {
   return (
@@ -7,49 +6,29 @@ function App() {
       <tbody>
         <tr>
           <td>
-            <DatePicker
-              onSelect={(date) => {
+            <PlainPicker
+              value="2022-01-01"
+              onChange={(date) => {
                 console.log(date);
-              }}
-              onClear={() => {
-                console.log("clear");
-              }}
-              options={{
-                extraOptions: {
-                  resetButton: true,
-                },
               }}
             />
           </td>
           <td>
             <RangePicker
-              startDate="2022-01-01"
-              endDate="2022-01-16"
-              onSelect={(start, end) => {
+              start="2022-01-01"
+              end="2022-01-16"
+              onChange={(start, end) => {
                 console.log(start, end);
               }}
-              options={{
-                placement: "bottom-end",
-                presetOptions: {
-                  presets: [
-                    {
-                      label: "Last Week",
-                      start: "2022-01-01",
-                      end: "2023-01-01",
-                    },
-                    {
-                      label: "Last Month",
-                      start: "2021-01-01",
-                      end: "2023-01-01",
-                    },
-                    {
-                      label: "Last Year",
-                      start: "2019-01-01",
-                      end: "2023-01-01",
-                    },
-                  ],
-                },
-              }}
+              placement="bottom-end"
+              autoApply
+              resetButton
+              monthSelect
+              yearSelect
+              presets={[
+                { label: "Preset 1", start: "2023-01-01", end: "2023-02-15" },
+                { label: "Preset 2", start: "2023-01-01" },
+              ]}
             />
           </td>
         </tr>

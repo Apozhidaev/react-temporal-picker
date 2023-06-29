@@ -112,10 +112,15 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.14.tgz#90558dcb279989d92a42e5be4dfb884b2399361f"
   integrity sha512-ED1UpWcM6lAbalbbQ9TrGqJh4Y9TaASUvu8bI/0mgJcxhSByJ6rbpgqRhxYMaQ682WfA71nxUreaTO7L275zrw==
 
-"@popperjs/core@^2.11.6":
-  version "2.11.6"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
-  integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
+"@popperjs/core@^2.11.8":
+  version "2.11.8"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
+  integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
+
+"@stencil/core@^3.0.0":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-3.4.1.tgz#b4a3d7579fa1ebb312aaed4c3d8f4bd6dece13f1"
+  integrity sha512-7rjOmM0W9K5op2gtOQRLERGH1155rv2fm6ppxOzYqqG8ISct4m9skp5XgUBYPu+GSPsJFdRuCIQs0IuVsG/7+g==
 
 "@types/prop-types@*":
   version "15.7.5"
@@ -186,10 +191,10 @@ loose-envify@^1.1.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-luxon@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.2.1.tgz#14f1af209188ad61212578ea7e3d518d18cee45f"
-  integrity sha512-QrwPArQCNLAKGO/C+ZIilgIuDnEnKx5QYODdDtbFaxzsbZcc/a7WFq7MhsVYgRlwawLtvOUESTlfJ+hc/USqPg==
+luxon@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.3.0.tgz#d73ab5b5d2b49a461c47cedbc7e73309b4805b48"
+  integrity sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==
 
 react-use-event-hook@^0.9.3:
   version "0.9.3"
@@ -203,14 +208,15 @@ react@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
 
-temporal-picker@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/temporal-picker/-/temporal-picker-1.0.2.tgz#f644700f9379c81071548a94e1f7d25af71590ca"
-  integrity sha512-W+JP3Fl8vay35QSB3kkDCxzWaiALB7fWEDJLWqYNFzqFRA32m+zegxpNSrWmbkX5Q360aOugBFMTzsJPnsrDWg==
+temporal-picker@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/temporal-picker/-/temporal-picker-2.0.2.tgz#339142f8c5d31f1bd7907baec0da01ec8c238199"
+  integrity sha512-es/Wa/7RDJE5v6JEcqundDv0Qy8EElVWAXGgA6z+OWzA3yqsbH+TpTYMI2kPnvTPCNAJSFsro834CNUvP3YLrg==
   dependencies:
-    "@popperjs/core" "^2.11.6"
+    "@popperjs/core" "^2.11.8"
+    "@stencil/core" "^3.0.0"
     lodash.merge "^4.6.2"
-    luxon "^3.2.1"
+    luxon "^3.3.0"
 
 typescript@^4.9.4:
   version "4.9.4"
